@@ -1,0 +1,1 @@
+                                               RABBITMQ - DEMO
