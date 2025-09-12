@@ -1,7 +1,7 @@
 package org.example.rabbitmq;
 
 
-import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class MessageProducer {
 
     @Autowired
-    private AmqpTemplate amqpTemplate;
+    private RabbitTemplate amqpTemplate;
 
     public void send(String message) {
-        amqpTemplate.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, message);
+        amqpTemplate.convertAndSend(RabbitConfig.MAIN_EXCHANGE, RabbitConfig.REQUEST_QUEUE, message);
         System.out.println("Message sent: " + message);
     }
 }
